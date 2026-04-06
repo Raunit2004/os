@@ -1,0 +1,10 @@
+{"time": "2026-04-06 16:53:39.390312", "sender": "Sender", "receiver": "Receiver", "message": "Message 0", "delay": null}
+{"time": "2026-04-06 16:53:39.890363", "sender": "Receiver", "receiver": "Sender", "message": "Message 0", "delay": 0.5010495185852051}
+{"time": "2026-04-06 16:53:40.393178", "sender": "Sender", "receiver": "Receiver", "message": "Message 1", "delay": null}
+{"time": "2026-04-06 16:53:40.893874", "sender": "Receiver", "receiver": "Sender", "message": "Message 1", "delay": 0.5006964206695557}
+{"time": "2026-04-06 16:53:41.394572", "sender": "Sender", "receiver": "Receiver", "message": "Message 2", "delay": null}
+{"time": "2026-04-06 16:53:41.395145", "sender": "Receiver", "receiver": "Sender", "message": "Message 2", "delay": 0.0005733966827392578}
+{"time": "2026-04-06 16:53:42.434586", "sender": "Sender", "receiver": "Receiver", "message": "Message 3", "delay": null}
+{"time": "2026-04-06 16:53:42.437157", "sender": "Receiver", "receiver": "Sender", "message": "Message 3", "delay": 0.00257110595703125}
+{"time": "2026-04-06 16:53:43.436324", "sender": "Sender", "receiver": "Receiver", "message": "Message 4", "delay": null}
+{"time": "2026-04-06 16:53:43.439364", "sender": "Receiver", "receiver": "Sender", "message": "Message 4", "delay": 0.003040313720703125}
