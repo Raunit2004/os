@@ -1,0 +1,44 @@
+2026-04-04 01:55:49.688985 | Client -> Server : Hello
+2026-04-04 01:55:50.689622 | Client -> Server : Normal Data
+2026-04-04 01:55:51.690326 | Client -> Server : Suspicious
+2026-04-04 01:55:52.691270 | Client -> Server : EXIT
+2026-04-08 17:16:28.086573 | P2 -> Receiver : P2-Message 0
+2026-04-08 17:16:28.418263 | P1 -> Receiver : P1-Message 0
+2026-04-08 17:16:28.561962 | Receiver -> Sender : P2-Message 0 | Delay: 0.4894 sec
+2026-04-08 17:16:29.037889 | P2 -> Receiver : P2-Message 1
+2026-04-08 17:16:29.105553 | Receiver -> Sender : P1-Message 0 | Delay: 0.7233 sec
+2026-04-08 17:16:29.622088 | P1 -> Receiver : P1-Message 1
+2026-04-08 17:16:29.645158 | Receiver -> Sender : P2-Message 1 | Delay: 0.5993 sec
+2026-04-08 17:16:30.095646 | P2 -> Receiver : P2-Message 2
+2026-04-08 17:16:30.168318 | Receiver -> Sender : P1-Message 1 | Delay: 0.5437 sec
+2026-04-08 17:16:30.731215 | Receiver -> Sender : P2-Message 2 | Delay: 0.6436 sec
+2026-04-08 17:16:31.085917 | P2 -> Receiver : P2-Message 3
+2026-04-08 17:16:31.250598 | Receiver -> Sender : P2-Message 3 | Delay: 0.1647 sec
+2026-04-08 17:16:31.392280 | P1 -> Receiver : P1-Message 2
+2026-04-08 17:16:31.774211 | Receiver -> Sender : P1-Message 2 | Delay: 0.3829 sec
+2026-04-08 17:16:31.860931 | P2 -> Receiver : P2-Message 4
+2026-04-08 17:16:32.285024 | Receiver -> Sender : P2-Message 4 | Delay: 0.4241 sec
+2026-04-08 17:16:32.382721 | P1 -> Receiver : P1-Message 3
+2026-04-08 17:16:32.823460 | Receiver -> Sender : P1-Message 3 | Delay: 0.4394 sec
+2026-04-08 17:16:33.980254 | P1 -> Receiver : P1-Message 4
+2026-04-08 17:16:34.337663 | Receiver -> Sender : P1-Message 4 | Delay: 0.3634 sec
+2026-04-09 15:18:31.857772 | P1 -> Receiver : P1-Message 0
+2026-04-09 15:18:31.887391 | Receiver -> Sender : P1-Message 0 | Delay: 0.0306 sec
+2026-04-09 15:18:31.998455 | P2 -> Receiver : P2-Message 0
+2026-04-09 15:18:32.388647 | Receiver -> Sender : P2-Message 0 | Delay: 0.3907 sec
+2026-04-09 15:18:33.600083 | P1 -> Receiver : P1-Message 1
+2026-04-09 15:18:33.891142 | Receiver -> Sender : P1-Message 1 | Delay: 0.2911 sec
+2026-04-09 15:18:34.223004 | P2 -> Receiver : P2-Message 1
+2026-04-09 15:18:34.393240 | Receiver -> Sender : P2-Message 1 | Delay: 0.1709 sec
+2026-04-09 15:18:35.283793 | P1 -> Receiver : P1-Message 2
+2026-04-09 15:18:35.395880 | Receiver -> Sender : P1-Message 2 | Delay: 0.1131 sec
+2026-04-09 15:18:36.022363 | P2 -> Receiver : P2-Message 2
+2026-04-09 15:18:36.397227 | Receiver -> Sender : P2-Message 2 | Delay: 0.3749 sec
+2026-04-09 15:18:37.641821 | P1 -> Receiver : P1-Message 3
+2026-04-09 15:18:37.888935 | P2 -> Receiver : P2-Message 3
+2026-04-09 15:18:37.901025 | Receiver -> Sender : P1-Message 3 | Delay: 0.2751 sec
+2026-04-09 15:18:38.404807 | Receiver -> Sender : P2-Message 3 | Delay: 0.5153 sec
+2026-04-09 15:18:38.815109 | P2 -> Receiver : P2-Message 4
+2026-04-09 15:18:38.907426 | Receiver -> Sender : P2-Message 4 | Delay: 0.0918 sec
+2026-04-09 15:18:39.206545 | P1 -> Receiver : P1-Message 4
+2026-04-09 15:18:39.409452 | Receiver -> Sender : P1-Message 4 | Delay: 0.2024 sec

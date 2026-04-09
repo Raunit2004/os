@@ -1,0 +1,3 @@
+# Python IPC Debugger Requirements
+# This project uses only standard library modules
+# No external dependencies required
