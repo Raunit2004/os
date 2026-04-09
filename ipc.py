@@ -1,46 +1,42 @@
-# ipc.py
-from multiprocessing import Process, Queue
+ # ipc.py
+from multiprocessing import Process, Queue, current_process
 import time
 import random
 from logger import log_message
 
-# Global variable for message tracking
-expected_count = 0
-
 def sender(queue, sender_id):
     for i in range(5):
-        msg = f"{sender_id}-Message {i}"
+        msg = f"{sender_id}-Msg-{i}"
         
         # Simulate random delay
-        time.sleep(random.uniform(0.5, 2.5))
+        time.sleep(random.uniform(0.5, 2.0))
         
-        queue.put((msg, time.time()))
-        log_message(sender_id, "Receiver", msg)
+        queue.put((sender_id, msg, time.time()))
+        log_message(sender_id, "QUEUE", msg)
 
-def receiver(queue):
-    global expected_count
+        print(f"[SENT] {msg}")
+
+def receiver(queue, receiver_id):
+    last_received = {}
 
     while True:
         if not queue.empty():
-            msg, sent_time = queue.get()
+            sender_id, msg, sent_time = queue.get()
             receive_time = time.time()
 
             delay = receive_time - sent_time
 
-            # Extract message number
-            try:
-                msg_num = int(msg.split()[-1])
-            except:
-                msg_num = -1
+            # Track last message from each sender
+            msg_num = int(msg.split("-")[-1])
 
-            # Message loss detection
-            if msg_num != expected_count:
-                print(f"[ERROR] Message loss detected! Expected {expected_count}, got {msg_num}")
+            if sender_id in last_received:
+                if msg_num != last_received[sender_id] + 1:
+                    print(f"[ERROR] {receiver_id}: Message loss from {sender_id}")
 
-            expected_count = msg_num + 1
+            last_received[sender_id] = msg_num
 
-            log_message("Receiver", "Sender", msg, delay)
+            log_message(sender_id, receiver_id, msg, delay)
 
-            print(f"[RECEIVED] {msg} | Delay: {delay:.4f} sec")
+            print(f"[{receiver_id}] Received {msg} from {sender_id} | Delay: {delay:.4f}s")
 
-        time.sleep(0.5)
+        time.sleep(0.3)
