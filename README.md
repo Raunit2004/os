@@ -1,64 +1,62 @@
 # IPC Debugger Project
 
-This project runs locally using Python.
+This project simulates **Multiprocessing IPC** using Python's `multiprocessing.Queue`, logs messages/delays, detects issues, and provides web/GUI dashboards for monitoring and threat analysis.
 
-## Features
+## ✨ Features (Enhanced)
+- **Multi-Sender IPC Simulation**: 2 senders (P1, P2) → 1 receiver, shared queue.
+- **Live Logging**: JSONL to `logs.json` with timestamps, delays.
+- **Web Dashboard**: Flask on port 5001 - Live table, auto-highlights (high delay >1s yellow, suspicious keywords red), analysis summary/alerts.
+- **Threat Analysis**: Keywords ("hack", "attack", etc.), high delay warnings.
+- **GUI Viewer**: Tkinter app to load/analyze logs.
+- **Console Debugger**: `python debugger.py`.
 
-- **Multiprocessing IPC Simulation**: Demonstrates communication between multiple sender processes and a receiver process using Python's multiprocessing Queue.
-- **Message Logging**: Logs all messages with timestamps and delays.
-- **Message Loss Detection**: Detects potential message loss or out-of-order delivery.
-- **Threat Analysis**: Scans logs for suspicious keywords like "hack", "attack", "malware".
-- **GUI Dashboard**: Simple Tkinter-based GUI for monitoring (optional).
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ipc-debugger.git
-   cd ipc-debugger
+## 🚀 Quick Start
+1. **Install deps**:
    ```
-
-2. Install dependencies (if any):
-   ```bash
    pip install -r requirements.txt
    ```
+2. **Start Dashboard** (already running):
+   ```
+   python app.py
+   ```
+   Open [http://127.0.0.1:5001](http://127.0.0.1:5001)
+3. **Run Simulation** (generates logs):
+   ```
+   python main.py
+   ```
+   - Clears logs, runs 15s, prints sent/received.
+   - Refresh dashboard → see table/analysis!
+4. **GUI**:
+   ```
+   python -c "from gui import launch_gui; launch_gui()"
+   ```
+5. **Console Analysis**:
+   ```
+   python debugger.py  # Wait, add if __name__ call in debugger.py
+   ```
 
-Dependencies: Flask and Gunicorn (for web dashboard). Install with `pip install -r requirements.txt`.
-
-## Usage
-
-Run the main script to start the IPC simulation:
-
-```bash\npython main.py\n```\n\n**Web Dashboard:**\n```bash\npython app.py\n```\nOpen http://localhost:5001 in browser (run `python main.py` first for logs).\n\nThis will:
-- Start a receiver process that reads messages and logs them.
-- Run for 10 seconds, then terminate processes.
-- Analyze the logs for suspicious activity.
-
-### Output
-
-The program will print received messages with delays and any detected message loss errors. At the end, it performs a threat analysis on the logs.
-
-### GUI (Optional)
-
-To launch the GUI dashboard:
-
-```python
-from gui import launch_gui
-launch_gui()
-```
+## Demo Flow
+1. `python main.py` → logs populate.
+2. Dashboard auto-updates table (colors for issues).
+3. Click "Analyze Logs" → see summary, warnings (high delays), alerts (keywords).
+4. GUI: Load logs, run analysis popup.
 
 ## Files
+- `main.py`: Multi-IPC simulation.
+- `ipc.py`: sender/receiver logic.
+- `logger.py`: JSONL logging.
+- `debugger.py`: Analysis engine (console/JSON).
+- `app.py`: Flask dashboard (:5001).
+- `templates/index.html`, `static/script.js`: UI + live JS.
+- `gui.py`: Tkinter GUI.
+- `analyzer.py`: Legacy, deprecated.
+- `logs.json`: Auto-generated.
 
-- `main.py`: Entry point that starts the multiprocessing simulation.
-- `ipc.py`: Contains sender and receiver functions for IPC.
-- `logger.py`: Handles logging messages to a file.
-- `analyzer.py`: Analyzes logs for suspicious activity.
-- `debugger.py`: Wrapper for analysis.
-- `gui.py`: Simple Tkinter GUI.
-`logs.json`: Generated log file (JSON lines).
-
-## Requirements\n\n- Python 3.6+\n- Flask, Gunicorn (pip install -r requirements.txt)\n- Standard library modules
+## Production
+```
+gunicorn app:app -b 0.0.0.0:5001  # Procfile ready
+```
 
 ## License
+MIT
 
-MIT License

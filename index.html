@@ -1,56 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IPC Debugger Dashboard</title>
+    <title>IPC Debugger</title>
     <style>
-        body { font-family: Arial; margin: 20px; }
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
+        .high-delay { background-color: #ffeb3b !important; }
+        .alert { background-color: #f44336 !important; color: white; }
+        #analysis { margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        .alert-section { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
         .warning { background-color: #fff3cd; }
-        .alert { background-color: #f8d7da; }
+        .alert-item { background-color: #f8d7da; }
     </style>
 </head>
 <body>
-    <h1>IPC Debugger Dashboard</h1>
-    <button onclick="loadLogs()">Refresh Logs</button>
-    <table id="logsTable">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Message</th>
-                <th>Delay (s)</th>
-            </tr>
-        </thead>
-        <tbody id="logsBody"></tbody>
-    </table>
 
-    <script>
-        async function loadLogs() {
-            try {
-                const response = await fetch('/logs');
-                const logs = await response.json();
-                const tbody = document.getElementById('logsBody');
-                tbody.innerHTML = '';
-                logs.forEach(log => {
-                    const row = tbody.insertRow();
-                    row.innerHTML = `
-                        <td>${log.time}</td>
-                        <td>${log.sender}</td>
-                        <td>${log.receiver}</td>
-                        <td>${log.message}</td>
-                        <td>${log.delay ? log.delay.toFixed(4) : 'N/A'}</td>
-                    `;
-                    if (log.delay > 1.0) row.classList.add('warning');
-                });
-            } catch (error) {
-                console.error('Error loading logs:', error);
-            }
-        }
-        loadLogs(); // Auto load
-        setInterval(loadLogs, 5000); // Refresh every 5s
-    </script>
+<h1>IPC Debugger Dashboard</h1>
+
+<button id="analyzeBtn" onclick="fetchAnalysis()">Analyze Logs</button>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Message</th>
+            <th>Delay</th>
+        </tr>
+    </thead>
+    <tbody id="logTable"></tbody>
+</table>
+
+<div id="analysis">
+    <h2>Analysis</h2>
+    <div id="summary"></div>
+    <div id="warnings" class="alert-section warning"></div>
+    <div id="alerts" class="alert-section alert-item"></div>
+</div>
+
+<script src="/static/script.js"></script>
+
 </body>
 </html>
+
