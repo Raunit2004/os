@@ -1,6 +1,6 @@
-# IPC Debugger
+# IPC Debugger Project
 
-A Python-based Inter-Process Communication (IPC) debugger that simulates message passing between processes using multiprocessing queues. It includes logging, message delay analysis, and basic threat detection.
+This project runs locally using Python.
 
 ## Features
 
@@ -23,18 +23,13 @@ A Python-based Inter-Process Communication (IPC) debugger that simulates message
    pip install -r requirements.txt
    ```
 
-   Note: This project uses only Python standard library modules, so no external dependencies are required.
+Dependencies: Flask and Gunicorn (for web dashboard). Install with `pip install -r requirements.txt`.
 
 ## Usage
 
 Run the main script to start the IPC simulation:
 
-```bash
-python main.py
-```
-
-This will:
-- Start two sender processes sending messages to a shared queue.
+```bash\npython main.py\n```\n\n**Web Dashboard:**\n```bash\npython app.py\n```\nOpen http://localhost:5001 in browser (run `python main.py` first for logs).\n\nThis will:
 - Start a receiver process that reads messages and logs them.
 - Run for 10 seconds, then terminate processes.
 - Analyze the logs for suspicious activity.
@@ -60,12 +55,9 @@ launch_gui()
 - `analyzer.py`: Analyzes logs for suspicious activity.
 - `debugger.py`: Wrapper for analysis.
 - `gui.py`: Simple Tkinter GUI.
-- `logs.txt`: Generated log file (ignored in git).
+`logs.json`: Generated log file (JSON lines).
 
-## Requirements
-
-- Python 3.6+
-- Standard library modules: multiprocessing, time, random, datetime, tkinter
+## Requirements\n\n- Python 3.6+\n- Flask, Gunicorn (pip install -r requirements.txt)\n- Standard library modules
 
 ## License
 

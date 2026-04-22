@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPC Debugger</title>
+</head>
+<body>
+
+    <h1>IPC Debugger Dashboard</h1>
+
+    <table border="1">
+        <tr>
+            <th>Time</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Message</th>
+            <th>Delay</th>
+        </tr>
+
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.time }}</td>
+            <td>{{ log.sender }}</td>
+            <td>{{ log.receiver }}</td>
+            <td>{{ log.message }}</td>
+            <td>{{ log.delay }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

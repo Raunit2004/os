@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OS Project</title>
+    <title>IPC Debugger Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .warning { background-color: #fff3cd; }
+        .alert { background-color: #f8d7da; }
+    </style>
 </head>
 <body>
-    <h1>IPC Debugger Project</h1>
-    <p>This project runs locally using Python.</p>
+    <h1>IPC Debugger Dashboard</h1>
+    <button onclick="loadLogs()">Refresh Logs</button>
+    <table id="logsTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Message</th>
+                <th>Delay (s)</th>
+            </tr>
+        </thead>
+        <tbody id="logsBody"></tbody>
+    </table>
+
+    <script>
+        async function loadLogs() {
+            try {
+                const response = await fetch('/logs');
+                const logs = await response.json();
+                const tbody = document.getElementById('logsBody');
+                tbody.innerHTML = '';
+                logs.forEach(log => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${log.time}</td>
+                        <td>${log.sender}</td>
+                        <td>${log.receiver}</td>
+                        <td>${log.message}</td>
+                        <td>${log.delay ? log.delay.toFixed(4) : 'N/A'}</td>
+                    `;
+                    if (log.delay > 1.0) row.classList.add('warning');
+                });
+            } catch (error) {
+                console.error('Error loading logs:', error);
+            }
+        }
+        loadLogs(); // Auto load
+        setInterval(loadLogs, 5000); // Refresh every 5s
+    </script>
 </body>
 </html>
